@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Student Productivity Dashboard</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="logo"><span data-icon="check"></span> DHYEYA</div>
+    <nav id="nav" aria-label="Main navigation">
+      <button data-view="home" class="active"><span data-icon="home"></span><span>Home</span></button>
+      <button data-view="attendance"><span data-icon="cal"></span><span>Attendance</span></button>
+      <button data-view="tasks"><span data-icon="check"></span><span>Tasks</span></button>
+      <button data-view="timer"><span data-icon="clock"></span><span>Study Timer</span></button>
+    </nav>
+    <div class="side-foot">Data stored locally in this browser</div>
+  </aside>
+
+  <main>
+    <div class="topbar">
+      <button class="icon-btn" id="themeBtn" onclick="toggleTheme()" aria-label="Toggle dark mode"></button>
+      <button class="icon-btn" onclick="openSettings()" aria-label="Settings"><span data-icon="gear"></span></button>
+    </div>
+
+    <section id="home" class="view active"></section>
+    <section id="attendance" class="view"></section>
+    <section id="tasks" class="view"></section>
+
+    <section id="timer" class="view">
+      <h1>Study Timer</h1>
+      <div class="tabs">
+        <button data-mode="normal" onclick="setMode('normal')">Normal</button>
+        <button data-mode="stopwatch" onclick="setMode('stopwatch')">Stopwatch</button>
+        <button data-mode="pomodoro" onclick="setMode('pomodoro')">Pomodoro</button>
+      </div>
+      <div class="card timer-card">
+        <p id="sessionLabel" class="muted"></p>
+        <div class="ring" id="ring">
+          <div class="ring-in">
+            <div id="phaseLabel" class="phase"></div>
+            <div id="clock" class="clock" aria-live="off">25:00</div>
+            <div id="cycleLabel" class="muted"></div>
+          </div>
+        </div>
+        <div id="timeInputs" class="inputs"></div>
+        <div class="btn-row center">
+          <button class="btn primary" id="btnStart" onclick="startTimer()">Start</button>
+          <button class="btn primary" id="btnResume" onclick="startTimer()">Resume</button>
+          <button class="btn" id="btnPause" onclick="pauseTimer()">Pause</button>
+          <button class="btn" id="btnSkip" onclick="skipPhase()">Skip</button>
+          <button class="btn" id="btnReset" onclick="resetTimer()">Reset</button>
+        </div>
+      </div>
+      <div class="grid2">
+        <div class="card stat"><span class="muted">Today's Focus</span><strong id="todayFocus">0m</strong></div>
+        <div class="card stat"><span class="muted">All Time</span><strong id="allFocus">0m</strong></div>
+      </div>
+      <div class="card"><h2>Last 7 days</h2><div id="history"></div></div>
+    </section>
+  </main>
+</div>
+<div id="modalRoot"></div>
+<div id="toasts" aria-live="polite"></div>
+
+<script src="js/storage.js"></script>
+<script src="js/attendance.js"></script>
+<script src="js/tasks.js"></script>
+<script src="js/timer.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
